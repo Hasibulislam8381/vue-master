@@ -9,6 +9,7 @@ import StaticProp from './components/StaticProp.vue'
 import DinamicProps from './components/DinamicProps.vue'
 import CustomValidator from './components/CustomValidator.vue'
 import FormComponent from './components/FormComponent.vue'
+import NameSlot from './components/NameSlot.vue'
 
 const firstName = ref('Hasibul')
 const lastName = ref('Islam')
@@ -31,5 +32,9 @@ const getFormData = (name, email, password) => {
   <DinamicProps :firstName="firstName" :lastName="lastName" /> -->
   <CustomValidator name="Hasibul" :age="20" password="HimelIslam" />
   <FormComponent @userInfo="getFormData" />
+  <NameSlot>
+    <template v-slot:one> <h1>Pushing to slot 1</h1></template>
+    <template v-slot:two> <h1>Pushing to slot 2</h1></template>
+  </NameSlot>
 </template>
 <style scoped></style>
