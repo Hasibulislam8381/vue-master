@@ -8,9 +8,16 @@ import ConditionalRendering from './components/ConditionalRendering.vue'
 import StaticProp from './components/StaticProp.vue'
 import DinamicProps from './components/DinamicProps.vue'
 import CustomValidator from './components/CustomValidator.vue'
+import FormComponent from './components/FormComponent.vue'
 
 const firstName = ref('Hasibul')
 const lastName = ref('Islam')
+
+const getFormData = (name, email, password) => {
+  console.log(name)
+  console.log(email)
+  console.log(password)
+}
 </script>
 <template>
   <!-- <div><CounterMake /></div>
@@ -23,5 +30,6 @@ const lastName = ref('Islam')
   <StaticProp names="Himel" />
   <DinamicProps :firstName="firstName" :lastName="lastName" /> -->
   <CustomValidator name="Hasibul" :age="20" password="HimelIslam" />
+  <FormComponent @userInfo="getFormData" />
 </template>
 <style scoped></style>
