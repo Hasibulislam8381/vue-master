@@ -9,6 +9,9 @@ const addTodo = () => {
     newTodo.value = ''
   }
 }
+const removeTask = (index) => {
+  todos.value.splice(index, 1)
+}
 </script>
 <template>
   <section>
@@ -31,7 +34,9 @@ const addTodo = () => {
 
         <div class="row show_todo" v-for="(todo, index) in todos" :key="index">
           <div class="col-md-9">{{ todo }}</div>
-          <div class="col-md-3"><button class="btn btn-danger">Remove</button></div>
+          <div class="col-md-3">
+            <button @click="removeTask(index)" class="btn btn-danger">Remove</button>
+          </div>
         </div>
       </div>
     </div>
