@@ -8,7 +8,7 @@ const jobs = [
 </script>
 <template>
   <div class="container">
-    <h1>Job Post</h1>
+    <h1 class="text-center">Job Post</h1>
 
     <div class="all-jobs">
       <ul>
@@ -23,8 +23,21 @@ const jobs = [
 </template>
 <style scoped>
 .all-jobs ul li {
-  padding: 10px;
   list-style: none;
-  background: rgb(247, 233, 208);
+}
+.all-jobs a {
+  text-decoration: none;
+}
+.all-jobs h2 {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px auto;
+  max-width: 600px;
+  cursor: pointer;
+  color: #444;
+}
+.all-jobs h2:hover {
+  background: #ddd;
 }
 </style>
