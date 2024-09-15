@@ -1,23 +1,34 @@
 <script setup>
-// import JobDetails from '../jobs/JobDetails.vue'
-const jobs = [
-  { id: 1, title: 'Frontend Developer', details: 'Company A' },
-  { id: 2, title: 'Backend Developer', details: 'Company B' },
-  { id: 3, title: 'Fullstack Developer', details: 'Company C' }
-]
+import { ref, onMounted } from 'vue'
+
+const jobs = ref([])
+
+onMounted(() => {
+  fetch('http://localhost:3000/jobs')
+    .then((res) => res.json())
+    .then((data) => {
+      jobs.value = data
+    })
+    .catch((err) => console.log(err.message))
+})
 </script>
+
 <template>
   <div class="container">
-    <h1 class="text-center">Job Post</h1>
-
-    <div class="all-jobs">
-      <ul>
-        <li v-for="job in jobs" :key="job.id">
-          <router-link :to="{ name: 'job_details', params: { id: job.id } }">
-            <h2>{{ job.title }}</h2>
-          </router-link>
-        </li>
-      </ul>
+    <div v-if="jobs.length">
+      <h1 class="text-center">Job Post</h1>
+      <div class="all-jobs">
+        <ul>
+          <li v-for="job in jobs" :key="job.id">
+            <router-link :to="{ name: 'job_details', params: { id: job.id } }">
+              <h2>{{ job.title }}</h2>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div v-else>
+      <p>Loading Jobs</p>
     </div>
   </div>
 </template>
