@@ -28,10 +28,13 @@ const posts = ref([
     body: "React is a JavaScript library for building user interfaces. In this post, we'll explore the basics of React, including components, state management, and hooks."
   }
 ])
+const togglePost = ref(true)
 </script>
 
 <template>
   <div class="container">
-    <PostList :posts="posts" />
+    <PostList v-if="togglePost" :posts="posts" />
+    <button @click="togglePost = !togglePost">Toggle Post</button>
+    <button @click="posts.pop()">Delete</button>
   </div>
 </template>
