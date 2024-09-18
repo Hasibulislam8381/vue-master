@@ -1,0 +1,7 @@
+{
+  "posts": [
+    { "id": 1, "title": "Post One", "body": "This is the first post.", "tag": "vue" },
+    { "id": 2, "title": "Post Two", "body": "This is the second post.", "tag": "javascript" },
+    { "id": 3, "title": "Post Three", "body": "This is the third post.", "tag": "webdev" }
+  ]
+}
