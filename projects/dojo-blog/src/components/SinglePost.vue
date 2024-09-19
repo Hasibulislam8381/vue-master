@@ -8,7 +8,10 @@ const showBody = computed(() => {
 </script>
 <template>
   <div>
-    <h2>{{ post.title }}</h2>
+    <router-link :to="{ name: 'details', params: { id: post.id } }">
+      <h2>{{ post.title }}</h2>
+    </router-link>
+
     <p>{{ showBody }}</p>
     <span v-for="tag in post.tags" :key="tag">#{{ tag }}</span>
   </div>
