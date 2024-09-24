@@ -2,7 +2,6 @@
 const props = defineProps({
   title: String
 })
-const emit = defineEmits(['submit'])
 </script>
 <template>
   <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -13,9 +12,7 @@ const emit = defineEmits(['submit'])
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" @submit.prevent="emit('submit')" method="POST">
-        <slot></slot>
-      </form>
+      <slot></slot>
 
       <p class="mt-10 text-center text-sm text-gray-500">
         Not a member?
