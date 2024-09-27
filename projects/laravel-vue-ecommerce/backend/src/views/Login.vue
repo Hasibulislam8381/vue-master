@@ -31,8 +31,10 @@ function login() {
           >Password</label
         >
         <div class="text-sm">
-          <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500"
-            >Forgot password?</a
+          <router-link
+            :to="{ name: 'RequestPassword' }"
+            class="font-semibold text-indigo-600 hover:text-indigo-500"
+            >Forgot password?</router-link
           >
         </div>
       </div>
