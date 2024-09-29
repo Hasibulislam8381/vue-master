@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 
 const formData = reactive({
   name: '',
@@ -11,11 +12,13 @@ const formData = reactive({
 const register = () => {
   console.log(formData)
 }
+
+const authStore = useAuthStore()
 </script>
 
 <template>
   <main>
-    <h1 class="title">Register</h1>
+    <h1 class="title">Register {{ authStore.user }}</h1>
     <form @submit.prevent="register" class="w-1/2 mx-auto space-y-6">
       <div>
         <input type="text" placeholder="name" v-model="formData.name" />
