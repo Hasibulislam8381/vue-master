@@ -14,8 +14,9 @@ export const useAuthStore = defineStore('authStore', {
         this.errors = {}
         if (res.status === 200 || res.status === 201) {
           this.user = res.data.data.name
-          this.router.push({ name: 'home' })
-          console.log(res.data)
+          localStorage.setItem('token', res.data.token)
+          // this.router.push({ name: 'home' })
+          console.log(res.data.)
         }
       } catch (error) {
         if (error.response && error.response.status === 422) {
