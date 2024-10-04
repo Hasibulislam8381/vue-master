@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-    <main>Vue Breeze</main>
+  <main>Hello vue</main>
 </template>
