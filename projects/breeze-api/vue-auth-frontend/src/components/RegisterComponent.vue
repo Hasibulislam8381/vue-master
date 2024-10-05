@@ -29,18 +29,16 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" @submit.prevent="handleRegister" method="POST">
         <div>
           <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
           <div class="mt-2">
             <input
-              id="name"
-              name="text"
-              type="name"
+              v-model="form.name"
+              type="text"
               placeholder="Name"
-              autocomplete="name"
               required=""
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -50,8 +48,7 @@
           >
           <div class="mt-2">
             <input
-              id="email"
-              name="email"
+              v-model="form.email"
               type="email"
               placeholder="Email"
               autocomplete="email"
@@ -69,8 +66,7 @@
           </div>
           <div class="mt-2">
             <input
-              id="password"
-              name="password"
+              v-model="form.password"
               type="password"
               placeholder="Password"
               autocomplete="current-password"
@@ -82,13 +78,12 @@
         <div>
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900"
-              >Password</label
+              >Password Confirmation</label
             >
           </div>
           <div class="mt-2">
             <input
-              id="password_confirmation"
-              name="password_confirmation"
+              v-model="form.password_confirm"
               placeholder="Password Confirmation"
               type="password"
               autocomplete="current-password"
@@ -120,4 +115,32 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const router = useRouter
+
+const form = ref({
+  name: '',
+  email: '',
+  password: '',
+  password_confirm: ''
+})
+const getToken = async () => {
+  await axios.get('/sanctum/csrf-cookie', {
+    withCredentials: true
+  })
+}
+const handleRegister = async () => {
+  await getToken()
+  await axios.post('/register', {
+    name: form.value.name,
+    email: form.value.email,
+    password: form.value.password,
+    password_confirm: form.value.password_confirm
+  })
+  router.push('/')
+}
+</script>

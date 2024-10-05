@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+                ->middleware('guest')
+                ->name('login');
+
 
 require __DIR__.'/auth.php';
