@@ -120,7 +120,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
-const router = useRouter
+const router = useRouter()
 
 const form = ref({
   name: '',
@@ -128,13 +128,13 @@ const form = ref({
   password: '',
   password_confirm: ''
 })
-const getToken = async () => {
-  await axios.get('/sanctum/csrf-cookie', {
-    withCredentials: true
-  })
-}
+// const getToken = async () => {
+//   await axios.get('/sanctum/csrf-cookie', {
+//     withCredentials: true
+//   })
+// }
 const handleRegister = async () => {
-  await getToken()
+  // await getToken()
   await axios.post('/register', {
     name: form.value.name,
     email: form.value.email,

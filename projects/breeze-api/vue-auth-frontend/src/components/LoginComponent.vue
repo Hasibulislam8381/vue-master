@@ -120,23 +120,11 @@ const handleLogin = async () => {
   try {
     await getToken() // Ensure the CSRF token is set in the cookies
 
-    const response = await axios.post(
-      'http://localhost:8000/login',
-      {
-        email: form.email,
-        password: form.password
-      },
-      {
-        headers: {
-          'X-XSRF-TOKEN': document.cookie
-            .split('; ')
-            .find((row) => row.startsWith('XSRF-TOKEN='))
-            ?.split('=')[1] // Extract the XSRF token from the cookie
-        },
-        withCredentials: true // Make sure cookies are included in the request
-      }
-    )
-    console.log('Login successful:', response)
+    const response = await axios.post('http://localhost:8000/login', {
+      email: form.value.email,
+      password: form.value.password
+    })
+    router.push('/')
   } catch (error) {
     console.error('Login failed:', error.response)
   }
